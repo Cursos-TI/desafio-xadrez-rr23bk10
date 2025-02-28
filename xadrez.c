@@ -34,6 +34,19 @@ void moverCavalo() {
     }
 }
 
+// Função para movimentação específica do Cavalo no desafio nível aventureiro
+void moverCavaloDesafio() {
+    printf("\nMovimentação do Cavalo no Desafio:\n");
+    for (int i = 0; i < 2; i++) {
+        printf("Baixo\n");
+    }
+    int j = 0;
+    while (j < 1) {
+        printf("Esquerda\n");
+        j++;
+    }
+}
+
 int main() {
     printf("Movimentação do Bispo:\n");
     moverBispo(5);
@@ -49,6 +62,9 @@ int main() {
 
     printf("Movimentação do Cavalo:\n");
     moverCavalo();
+    printf("\n");
+
+    moverCavaloDesafio();
     printf("\n");
 
     return 0;
