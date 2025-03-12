@@ -1,71 +1,96 @@
 #include <stdio.h>
 
-// Desafio de Xadrez - MateCheck
-// Este código implementa a movimentação das peças de xadrez usando estruturas de repetição e funções.
+// Função recursiva para mover a Torre
+void moverTorre(int casas, char direcao) {
+    if (casas <= 0) return; // Condição de parada da recursão
 
-// Função recursiva para movimentação do Bispo
-void moverBispo(int casas) {
-    if (casas == 0) return;
-    printf("Cima, Direita\n");
-    moverBispo(casas - 1);
-}
-
-// Função iterativa para movimentação da Torre
-void moverTorre(int casas) {
-    for (int i = 0; i < casas; i++) {
+    if (direcao == 'c') {
+        printf("Cima\n");
+    } else if (direcao == 'b') {
+        printf("Baixo\n");
+    } else if (direcao == 'e') {
+        printf("Esquerda\n");
+    } else if (direcao == 'd') {
         printf("Direita\n");
     }
+
+    moverTorre(casas - 1, direcao); // Chamada recursiva
 }
 
-// Função iterativa para movimentação da Rainha
-void moverRainha(int casas) {
-    int i = 0;
-    while (i < casas) {
-        printf("Esquerda\n");
-        i++;
+// Função recursiva para mover o Bispo
+void moverBispo(int casas, char direcao) {
+    if (casas <= 0) return; // Condição de parada da recursão
+
+    if (direcao == 'cd') {
+        printf("Cima-Direita\n");
+    } else if (direcao == 'ce') {
+        printf("Cima-Esquerda\n");
+    } else if (direcao == 'bd') {
+        printf("Baixo-Direita\n");
+    } else if (direcao == 'be') {
+        printf("Baixo-Esquerda\n");
     }
+
+    moverBispo(casas - 1, direcao); // Chamada recursiva
 }
 
-// Função para movimentação do Cavalo
-void moverCavalo() {
-    int movimentos[8][2] = {{2, 1}, {2, -1}, {-2, 1}, {-2, -1}, {1, 2}, {1, -2}, {-1, 2}, {-1, -2}};
-    for (int i = 0; i < 8; i++) {
-        printf("Movimento do Cavalo: (%d, %d)\n", movimentos[i][0], movimentos[i][1]);
-    }
-}
+// Função recursiva para mover a Rainha
+void moverRainha(int casas, char direcao) {
+    if (casas <= 0) return; // Condição de parada da recursão
 
-// Função para movimentação específica do Cavalo no desafio nível aventureiro
-void moverCavaloDesafio() {
-    printf("\nMovimentação do Cavalo no Desafio:\n");
-    for (int i = 0; i < 2; i++) {
+    if (direcao == 'c') {
+        printf("Cima\n");
+    } else if (direcao == 'b') {
         printf("Baixo\n");
-    }
-    int j = 0;
-    while (j < 1) {
+    } else if (direcao == 'e') {
         printf("Esquerda\n");
-        j++;
+    } else if (direcao == 'd') {
+        printf("Direita\n");
+    } else if (direcao == 'cd') {
+        printf("Cima-Direita\n");
+    } else if (direcao == 'ce') {
+        printf("Cima-Esquerda\n");
+    } else if (direcao == 'bd') {
+        printf("Baixo-Direita\n");
+    } else if (direcao == 'be') {
+        printf("Baixo-Esquerda\n");
     }
+
+    moverRainha(casas - 1, direcao); // Chamada recursiva
 }
 
 int main() {
-    printf("Movimentação do Bispo:\n");
-    moverBispo(5);
+    // Movimento da Torre
+    moverTorre(3, 'c'); // Move a Torre 3 casas para cima
     printf("\n");
 
-    printf("Movimentação da Torre:\n");
-    moverTorre(5);
+    // Movimento do Bispo
+    moverBispo(3, 'cd'); // Move o Bispo 3 casas na diagonal cima-direita
     printf("\n");
 
-    printf("Movimentação da Rainha:\n");
-    moverRainha(8);
+    // Movimento da Rainha
+    moverRainha(3, 'cd'); // Move a Rainha 3 casas na diagonal cima-direita
     printf("\n");
 
-    printf("Movimentação do Cavalo:\n");
-    moverCavalo();
+    // Movimento do Cavalo
+    int i, j;
+    for (i = 0; i < 2; i++) { // Duas casas para cima
+        for (j = 0; j < 1; j++) { // Uma casa para a direita
+            printf("Cima\n");
+        }
+    }
+    printf("Direita\n");
+
     printf("\n");
 
-    moverCavaloDesafio();
-    printf("\n");
+    // Movimento do Bispo com loops aninhados
+    for (i = 0; i < 3; i++) { // Movimento vertical
+        for (j = 0; j < 3; j++) { // Movimento horizontal
+            if (i == j) {
+                printf("Cima-Direita\n");
+            }
+        }
+    }
 
     return 0;
 }
